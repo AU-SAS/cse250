@@ -93,7 +93,7 @@ CREATE TABLE `permission` (
 -- role: Role definitions within an app (unique per app by (app_id, code)).
 -- Child of app; referenced by role_permission.role_id and app_user_role.role_id.
 CREATE TABLE `role` (
-  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   app_id SMALLINT UNSIGNED NOT NULL,
   code VARCHAR(100) NOT NULL,
   name VARCHAR(200) NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE `role` (
 -- role_permission: Join table that grants permissions to roles (many-to-many).
 -- Each row means: this role includes this permission.
 CREATE TABLE role_permission (
-  role_id BIGINT UNSIGNED NOT NULL,
+  role_id SMALLINT UNSIGNED NOT NULL,
   permission_id SMALLINT UNSIGNED NOT NULL,
   granted_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (role_id, permission_id),
@@ -132,7 +132,7 @@ CREATE TABLE role_permission (
 CREATE TABLE app_user_role (
   app_id SMALLINT UNSIGNED NOT NULL,
   user_id SMALLINT UNSIGNED NOT NULL,
-  role_id BIGINT UNSIGNED NOT NULL,
+  role_id SMALLINT UNSIGNED NOT NULL,
   assigned_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (app_id, user_id, role_id),
   KEY idx_app_user_role_user_id (user_id),
