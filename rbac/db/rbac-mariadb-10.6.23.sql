@@ -12,7 +12,7 @@
 --
 -- user:
 --   One row per user account.
---   TODO authentication is missing. There is no password field.
+--   Authentication is supported with password hash storage.
 --
 -- permission:
 --   A named ability/action within a specific app (e.g., "READ_REPORTS").
@@ -66,6 +66,7 @@ CREATE TABLE app (
 CREATE TABLE `user` (
   id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   username VARCHAR(100) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
   email VARCHAR(254) NULL,
   display_name VARCHAR(200) NULL,
   is_active TINYINT(1) NOT NULL DEFAULT 1,
