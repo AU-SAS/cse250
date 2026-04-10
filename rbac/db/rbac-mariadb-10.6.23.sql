@@ -1,21 +1,26 @@
 -- RBAC schema for MariaDB 10.6.23
 -- Tables: app, permission, role, role_permission, user, app_user_role
+--   Total 6 tables: 4 entity and 2 join tables.
+--   entity tables: app, permission, role, user
+--   join tables: role_permission, app_user_role
 --
 -- RBAC schema overview (simple English):
 -- Purpose: manage which users can do what in which app using roles and permissions.
 --
 -- app:
---   One row per application. Other tables attach to an app via app_id.
+--   One row per application. Other tables attach to an app via `app_id`. Note that user table does not attach to an app directly, but by the join table `app_user_role`.
 --
 -- user:
 --   One row per user account.
+--   TODO authentication is missing. There is no password field.
 --
 -- permission:
 --   A named ability/action within a specific app (e.g., "READ_REPORTS").
 --   Each permission belongs to exactly one app (permission.app_id -> app.id).
+--   TODO codex permission is specific to app, but we have not used a prefix 'app' here. why not? Note that 'app_user_role' uses app prefix to clarify the app specificity.
 --
 -- role:
---   A named role within a specific app (e.g., "ADMIN", "VIEWER").
+--   A named role within a specific app (e.g., "ADMIN", "VIEWER"). A role is a convenient way to group permissions.
 --   Each role belongs to exactly one app (role.app_id -> app.id).
 --
 -- role_permission (many-to-many):
@@ -129,6 +134,7 @@ CREATE TABLE role_permission (
 
 -- app_user_role: Join table that assigns users to roles within an app (many-to-many).
 -- Each row means: this user has this role for this app.
+-- TODO  should we keep the table name prefix 'app' or just drop it. note that 'user' is not app specific.
 CREATE TABLE app_user_role (
   app_id SMALLINT UNSIGNED NOT NULL,
   user_id SMALLINT UNSIGNED NOT NULL,

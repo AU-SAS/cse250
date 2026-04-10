@@ -29,3 +29,21 @@ Rename to `user_role` only if:
 2. roles are no longer app-scoped.
 
 If app scope remains, prefer keeping `app_user_role`.
+
+---
+>> codex permission is specific to app, but we have not used a prefix 'app' here. why not? Note that 'app_user_role' uses app prefix to clarify the app specificity.
+
+permission (and role) are modeled as entity tables scoped by app_id, so scope is encoded in data/constraints, not table name:
+
+- permission.app_id FK to app
+- UNIQUE (app_id, code)
+  (same pattern for role)
+
+app_user_role is a 3-way assignment table (app + user + role), and app_ is used to prevent the misleading interpretation that roles are global per user.
+
+So the current convention is effectively:
+
+- entity tables: simple nouns (permission, role)
+- cross-scope join table: explicit scope in name (app_user_role)
+
+If you want stricter symmetry, rename both permission and role to app_permission and app_role together, not just one.
