@@ -64,7 +64,7 @@ CREATE TABLE app (
 -- user: User accounts that can be assigned roles.
 -- Referenced by app_user_role.user_id.
 CREATE TABLE `user` (
-  id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
   username VARCHAR(100) NOT NULL,
   password_hash VARCHAR(255) NOT NULL,
   email VARCHAR(254) NULL,
@@ -138,7 +138,7 @@ CREATE TABLE role_permission (
 -- TODO  should we keep the table name prefix 'app' or just drop it. note that 'user' is not app specific.
 CREATE TABLE app_user_role (
   app_id SMALLINT UNSIGNED NOT NULL,
-  user_id SMALLINT UNSIGNED NOT NULL,
+  user_id INT UNSIGNED NOT NULL,
   role_id SMALLINT UNSIGNED NOT NULL,
   assigned_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (app_id, user_id, role_id),
