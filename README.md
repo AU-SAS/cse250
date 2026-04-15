@@ -2,9 +2,9 @@
 
 ## Next Steps
 
-- Change the user data type to INT.
-- Create the database from `db/rbac-mariadb-10.6.23.sql`.
-- Create some test entries into the database and write the sql at `docs/Admin-DB.md`.
+- Test Data
+  - ~~Create the database from `db/rbac-mariadb-10.6.23.sql`.~~
+  - Create some test entries into the database and write the sql at `docs/Test-Data.md`. Also, create a narrative in English for this test data and write at `docs/Test-Data-Plan.md`. This narrative will be used for hard-wired values in test cases.
 - Document the REST APIs and the JSON DTO (Data Transfer Object)s `docs/REST.md`.
 - Create a Node project in this directory for REST API using Express.
 - Create an automated test setup for validating all REST APIs.
