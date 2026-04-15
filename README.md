@@ -4,9 +4,9 @@
 
 - Test Data
   - ~~Create the database from `db/rbac-mariadb-10.6.23.sql`.~~
-  - Create some test entries into the database and write the sql at `docs/Test-Data.md`. Also, create a narrative in English for this test data and write at `docs/Test-Data-Plan.md`. This narrative will be used for hard-wired values in test cases.
-- Document the REST APIs and the JSON DTO (Data Transfer Object)s `docs/REST.md`.
-- Create a Node project in this directory for REST API using Express.
+  - ~~Create some test entries into the database and write the sql at `docs/Test-Data.md`. Also, create a narrative in English for this test data and write at `docs/Test-Data-Plan.md`. This narrative will be used for hard-wired values in test cases.~~
+- ~~Document the REST APIs and the JSON DTO (Data Transfer Object)s at `docs/REST.md`.~~
+- ~~Create a Node project in this directory for REST API using Express.~~
 - Create an automated test setup for validating all REST APIs.
 - Create a Markdown document at `./Admin-REST.md` to run all the REST APIs using fenced code blocks for bash commands using the curl tool.
 - An Admin frontend with login using Vite and the React framework that supports all the REST APIs.
